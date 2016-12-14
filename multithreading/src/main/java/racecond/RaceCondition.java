@@ -5,16 +5,13 @@ public class RaceCondition implements Runnable {
     private static long counter;
 
     public  void  run() {
-        //synchronized(RaceCondition.class)
-        {
             for (int i = 0; i < 100; i++) {
-                counter = counter + 1;
+                counter++;
             }
-        }
     }
 
     public static void main(String[] args) throws InterruptedException {
-        int tCount = 1000;
+        int tCount = 100;
         Thread[] threads = new Thread[tCount];
         for (int j = 0; j < tCount; j++) {
             threads[j] = new Thread(new RaceCondition());
@@ -25,7 +22,7 @@ public class RaceCondition implements Runnable {
             threads[j].join();
         }
 
-        System.out.println("Counter: "+counter);
+        System.out.println("Counter: " + counter);
 
     }
 }
